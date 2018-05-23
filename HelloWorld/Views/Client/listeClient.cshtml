@@ -1,0 +1,43 @@
+﻿
+<!-- ici création de la liste en remplissant de client -->
+
+@{
+
+    Layout = null;
+
+    // cast d'une liste  
+    List<HelloWorld.Models.Client> nouv2 = (List<HelloWorld.Models.Client>)ViewData["client"];
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListeClient</title>
+</head>
+<body>
+    <div> <table>
+        <!-- pour chaque client dans la liste je rajoute une ligne de tableau avec son nom et prenom -->
+    @foreach (HelloWorld.Models.Client client in nouv2)
+    {
+
+            <!-- création du tableau -->
+
+        <tr>
+            <!-- nouvelle ligne-->
+            <!-- syntaxe pour afficher la propriété de l'objet !  -->
+            <td> @client.Nom</td>
+
+      
+                <!-- syntaxe pour afficher la propriété de l'objet !  -->
+                <td>@client.Prenom</td>
+            </tr>
+
+    }
+</table>
+
+    </div>
+</body>
+</html>

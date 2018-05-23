@@ -1,0 +1,47 @@
+﻿body
+{
+
+
+
+}
+
+
+header, footer, #navigation, main
+{
+
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 2px 2px #808080;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #060;
+
+}
+
+main
+{
+
+    margin-left: 10px;
+
+}
+
+.btn-light
+{
+
+    width:150px;
+    /*margin-left:auto;
+    margin-right:auto;*/
+    margin:5px auto;
+    border: 1px solid black;
+    color:blue !important;
+
+}
+
+.btn-light.active /* correspond a la class des liens */
+{
+
+    background: #009 !important; /* mot clé qui prend le dessus sur n'importe quel */
+    color: white !important;
+
+}
+

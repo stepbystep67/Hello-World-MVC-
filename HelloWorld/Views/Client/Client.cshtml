@@ -1,0 +1,19 @@
+﻿<!--   -->
+@{
+   
+    HelloWorld.Models.Client nouv = (HelloWorld.Models.Client)ViewData["client"];
+
+}
+
+    <h1>Gestion Clientèle</h1>
+    <h2>Avec PHP ou ASP</h2>
+    <form>
+        <label>Veuillez écrire votre Nom : </label><input type="text" name="nom" id="nom" /><br>
+        <label>Veuillez écrire votre Prénom: </label><input type="text" name="prenom" id="prenom" /><br />
+        <button type="submit" formmethod="post"> Valider </button><br>
+        <div id="tableau">
+           @nouv.Nom<!-- affiche la propriete de l'objet (propriete qui correspond a la saisie utilisateur) -->
+            @nouv.Prenom<!-- affiche la propriete de l'objet (propriete qui correspond a la saisie utilisateur) -->
+        </div>
+        
+    </form>

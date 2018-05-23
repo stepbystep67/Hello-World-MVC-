@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>_ViewStart</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/Site2.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="row">
+            <div class="col col-lg-3">
+                <img src="~/Content/pictures/aa.jpg" alt="ASP.Net" id="image" class="img-fluid" />
+            </div>
+            <div class="col">
+                <h1>Gestion Clientèle</h1>
+                <h2 class="montitre">Avec PHP ou ASP</h2>
+            </div>
+        </header>
+
+        <div class="row">
+
+            <nav id="navigation" class="col col-lg-2">
+                <h2>Clients</h2>
+                <ul class="nav nav-pills flex-column">
+                    <li><a class="btn btn-light active">Acceuil</a></li><!--La pseudo-classe :active permet de cibler un élément lorsque celui-ci est activé par l'utilisateur.-->
+                    <li><a class="btn btn-light">Liste des clients</a></li>
+                    <li><a class="btn btn-light">Ajouter un client</a></li>
+                    <!-- btn défini la structure et btn-... défini la couleur et l'apparence  -->
+                </ul>
+                <h2>Produits</h2>
+                <ul>
+                    <li><a class="btn btn-light active" href="/Product">Liste des produits</a></li>
+                    <li><a class="btn btn-light " href="~/Product/Create">Nouveau produit</a></li>
+                </ul>
+            </nav>
+
+            <main class="col">
+                <h2>Acceuil</h2>
+                <p>
+                    Bienvenue dans la gestion clientèle.
+                    Utilisez le menu à gauche dans le site.
+                </p>
+                <hr />
+                @RenderBody() <!-- partie qui change dans la page -->
+                <hr />
+                <a href="https://www.google.fr/" class="btn-primary">Je préfère aller sur Google !</a>
+            </main>
+        </div>
+
+        <footer class="row">
+            <p id="lien_bas">Copyright 2018 section DL  </p>&nbsp;<a href="#" id="lien_bas">En haut</a>
+        </footer>
+    </div>
+
+</body>
+</html>

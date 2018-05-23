@@ -1,0 +1,50 @@
+﻿<!-- ici il cherche une collection de client qui devra correspondre avec la liste du controller -->
+@model IEnumerable<HelloWorld.Models.Client>
+
+   
+    <style>
+    table {
+        border-collapse: collapse;
+    }
+
+    tr:hover {
+        background-color: #ffd800
+    }
+
+    th, td {
+        border: 1px solid red;
+    }
+</style>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th><!-- th = correspondant à l'en tête de la balise TABLE et équivalent au TR, pour afficher le titre des données du tableau-->
+                @Html.DisplayNameFor(model => model.Nom)<!-- affiche une propriete du model sous forme de texte-->
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </th>
+            <th>Options</th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <!--  affiche nom (seulement le nom de l'accesseur)  -->
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td><!-- affiche prenom ( seulement le prenom de l'accesseur )-->
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+                @Html.ActionLink("Details", "Details", item) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+    }
+    
+    </table>
