@@ -9,12 +9,7 @@ namespace HelloWorld.Controllers
     public class OrderController : Controller
     {
 
-        public OrderController orderss = new OrderController
-        {
-
-            new ProductController("antiVirus"){ }; 
-
-        };
+        public OrderController orderss = new OrderController();
         
         // GET: Order
         public ActionResult Index()

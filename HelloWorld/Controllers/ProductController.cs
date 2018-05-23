@@ -29,10 +29,71 @@ namespace HelloWorld.Controllers
         // GET: Product
         public ActionResult Index()
         {
-
+            // affiche la liste par defaut
             return View(List_Product);
 
         }
+
+
+        // routconfig 
+        public ActionResult Details(Product _p)
+        {
+
+            //  la methode firstordefaut evite de trycatch
+            // si il trouve pas de correspondance renvoi null
+            Product p = List_Product.FirstOrDefault(x => (x.Reference == _p.Reference));
+
+            // on s'assure que le type est le bon 
+            if(p != default(Product))
+            {
+
+                // affiche les info du produit
+                return View(p);
+
+            }
+
+            // redirige vers la page de depart
+            return RedirectToAction("Index");
+            
+        }
+
+        // affichage puis validation 
+        public ActionResult Edit(string id)// reagi avec get mais pas post
+        {
+
+            Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+
+            if (exist != default(Product))
+            {
+                // affiche le produit 
+                return View(exist);
+
+            }
+            // reaffiche la liste dorigine
+            return RedirectToAction("index");
+
+        }
+
+        // validation 
+        [AcceptVerbs(HttpVerbs.Post)]//attribut de methode et reagira comme type post mais pas get
+        public ActionResult Edit(Product p)
+        {
+
+            Product exist = List_Product.FirstOrDefault(x => x.Reference == p.Reference);
+
+            if (exist != default(Product))
+            {
+
+                exist.ProductName = p.ProductName;
+                exist.ProductPrice = p.ProductPrice;
+                exist.ProductDescription = p.ProductDescription;
+
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
 
         public ActionResult Create()
         {
@@ -44,7 +105,7 @@ namespace HelloWorld.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(Product p)
         {
-       
+
 
             if (!ModelState.IsValid)
             {
@@ -66,7 +127,7 @@ namespace HelloWorld.Controllers
 
             Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
 
-            if(exist != default(Product))
+            if (exist != default(Product))
             {
 
                 return View(exist);
@@ -83,81 +144,23 @@ namespace HelloWorld.Controllers
 
             Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
 
-            if(exist != default(Product))
-            {
-
-                if(List_Product.Remove(exist))
-                {
-
-
-                  
-                }
-                return View(exist);
-               
-            }
-               return RedirectToAction("index");
-            
-        }
-
-
-        public ActionResult Edit(string id)
-        {
-
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
-
-            if(exist != default(Product))
-            {
-                
-                return View(exist);
-
-            }
-
-           return RedirectToAction("index");
-            
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(Product p)
-        {
-
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == p.Reference);
-
             if (exist != default(Product))
             {
 
-                exist.ProductName = p.ProductName;
-                exist.ProductPrice = p.ProductPrice;
-                exist.ProductDescription = p.ProductDescription;
+                if (List_Product.Remove(exist))
+                {
+
+
+
+                }
+                return View(exist);
 
             }
-
-            return RedirectToAction("Index");
+            return RedirectToAction("index");
 
         }
 
 
-
-        public ActionResult Details(Product _p)
-        {
-
-            //  la methode firstordefaut evite de trycatch
-            // si il trouve pas de correspondance renvoi null
-            Product p = List_Product.FirstOrDefault(x => (x.Reference == _p.Reference));
-
-            // on s'assure que le type est le bon 
-            if(p != default(Product))
-            {
-
-                // affiche les info du produit
-                return View(p);
-
-            }
-
-            // redirige vers la page de depart
-            return RedirectToAction("Index");
-            
-        }
-        
-      }
+    }
 
 }

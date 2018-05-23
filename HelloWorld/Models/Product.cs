@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+// toujours en public pour le framework et controller puisse le remplir  !!!!!!!
 namespace HelloWorld.Models
 {
 
