@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HelloWorld.Models.Product>
-
+<!-- model est la liste et l'item est l'element -->
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -7,6 +7,9 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Reference)
+        </th>
+        <th>
+            image produit
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductDescription)
@@ -20,27 +23,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Reference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Reference }) |
-            @Html.ActionLink("Details", "Details",  item) |<!-- item correspond a l'objet ! -->
-            @Html.ActionLink("Delete", "Delete", new {  id=item.Reference  })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                <img src="@item.GetThumbnail()" class="images_list" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.Reference }, new { @class = "far fa-edit" })|<!-- premier est laisser vide ,represente controller, l'action defeni dans avec un element par son id puis la class pour l'apparence fait par css bootstrap -->
+                @Html.ActionLink(" ", "Details", item, new { @class = "fa-icon-eye-open" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.Reference }, new { @class = "fa fa-trash-o" })
+            </td>
+        </tr>
+    }
 
 
 </table>

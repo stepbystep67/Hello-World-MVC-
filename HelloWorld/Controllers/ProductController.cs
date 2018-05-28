@@ -121,13 +121,15 @@ namespace HelloWorld.Controllers
 
                         //// chemin complet du fichier combine est une methode qui concatene 
                         //path = Path.Combine(path,filename);
+                        
+                        WebImage img = new WebImage(file.InputStream);//creation de l'image temporaire 
 
-                       
-                        WebImage img = new WebImage(file.InputStream);
-                        img.Resize(height: 180, width: 320);
-                        img.Save(path_th);
+                        img.Resize(height: 180, width: 320);// redimension de l'image 
+
+                        img.Save(path_th); // enregistre l'image dans le path_th
 
                     }
+
                 }
 
             }

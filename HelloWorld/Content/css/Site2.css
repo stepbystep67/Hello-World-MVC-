@@ -1,11 +1,4 @@
-﻿body
-{
-
-
-
-}
-
-
+﻿
 header, footer, #navigation, main
 {
 
@@ -45,3 +38,7 @@ main
 
 }
 
+.images_list 
+{
+    height: 45px;
+}

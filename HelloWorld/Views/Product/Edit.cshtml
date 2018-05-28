@@ -3,61 +3,63 @@
 <!-- toujours m minuscule model-->
 <!-- creer la balise form -->
 <!-- https://stackoverflow.com/questions/216600/html-beginform-and-adding-properties  -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))<!-- (mutlipart =texte pour humain et converti binaire pour le pc avant)-->
+<!-- -->
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) /* (mutlipart =texte pour humain et converti binaire pour le pc avant) */
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <!--  parenthese = requete linq -->
-        <!-- le model sera toujours de type product -->
-        <!-- objet html.caché(name du model => reference du model) -->
-        <!-- genere un champ caché pour ne pas que l'utilisateur ne la voit pour la recupere -->
-        <!-- par le model -->
-        @Html.HiddenFor(model => model.Reference)
-        <!--("Reference", Model.Reference ) syntaxe en dure !! -->
-        <!-- m majuscule selon ou c'est appeler et comment ! -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <!-- ce div est fait pour gerer les images -->
-        <div class="form-group">
-            <label class="control-label col-md-2">image du produit</label>
-            <div class="col-md-10">
-                <input type="file" name="productimage" id="productimage" /><!--en dur  strictement identique a la ligne d'en dessous faire le choix -->
-                @Html.TextBox("productimage", "", htmlAttributes: new { @Type = "file" })<!-- avec html helper strictement identique a la ligne d'au dessus faire le choix -->
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <h4>Product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!--  parenthese = requete linq -->
+    <!-- le model sera toujours de type product -->
+    <!-- objet html.caché(name du model => reference du model) -->
+    <!-- genere un champ caché pour ne pas que l'utilisateur ne la voit pour la recupere -->
+    <!-- par le model -->
+    @Html.HiddenFor(model => model.Reference)
+    <!--("Reference", Model.Reference ) syntaxe en dure !! -->
+    <!-- m majuscule selon ou c'est appeler et comment ! -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- ce div est fait pour gerer les images -->
+    <div class="form-group">
+        <label class="control-label col-md-2">image du produit</label>
+        <div class="col-md-10">
+            <input type="file" name="productimage" id="productimage" /><!--en dur  strictement identique a la ligne d'en dessous faire le choix -->
+            @Html.TextBox("productimage", "", htmlAttributes: new { @Type = "file" })<!-- avec html helper strictement identique a la ligne d'au dessus faire le choix -->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
