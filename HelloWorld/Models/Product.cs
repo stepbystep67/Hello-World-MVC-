@@ -80,13 +80,22 @@ namespace HelloWorld.Models
 
         }
 
+        public string GetImagesPath()
+        {
+
+
+            return "Content/product/" + Reference + ".jpg";
+
+        }
+
         public string GetImage()
         {
 
             // permet de trouver et afficher la bonne image du produit choisi par l'utilisateur 
-            return "Content/product/" + Reference + ".jpg";
+            return GetImagesPath();
         }
 
+       
 
         // méthode qui retourne l'image qui correspond a la reference de produit 
         // 
