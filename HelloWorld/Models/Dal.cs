@@ -130,7 +130,7 @@ namespace HelloWorld.Models
         #region Client
 
         // obtient la liste de client 
-        public List<Client> GetClient()
+        public List<Client> GetClients()
         {
 
             // type dbset converti

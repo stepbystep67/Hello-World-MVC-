@@ -11,6 +11,7 @@ namespace UnitTestProject1
     public class BddContext_Test
     {
 
+
         // attribut de methode test !
         [TestMethod] // Permet d'identifier des méthodes de test.  Cette classe ne peut pas être héritée.   https://msdn.microsoft.com/fr-fr/library/microsoft.visualstudio.testtools.unittesting.testmethodattribute.aspx
         public void TestMethod1()
@@ -36,17 +37,20 @@ namespace UnitTestProject1
 
         }
 
+
         // attribut de methode test !
         [TestMethod] // Permet d'identifier des méthodes de test.  Cette classe ne peut pas être héritée.   https://msdn.microsoft.com/fr-fr/library/microsoft.visualstudio.testtools.unittesting.testmethodattribute.aspx
         public void TestMethod2()
         {
 
+            // creation d'une nouvelle base de donnée que l'on mets dans dal de type data access layer
             using (Dal dal = new Dal())
             {
 
+                // 
                 dal.AddClient(new Client {  Prenom = "Justin", Nom = "Alemany" });
 
-                List<Client> client = dal.GetClient();
+                List<Client> client = dal.GetClients();
 
                 Assert.IsNotNull(client);
 
@@ -57,6 +61,25 @@ namespace UnitTestProject1
             }
 
         }
+
+        // tous testés
+        [TestMethod]
+        public void TestAll()
+        {
+            
+            using (Dal dal = new Dal())
+            {
+                // testmethod = utilisé l'objet assert et ses methodes pour verfirier ou comparer les resultats attendus
+
+                dal.AddClient(new Client { Prenom = "philipe", Nom = "moris" });
+                List<Client> ma_liste = dal.GetClients();
+                Assert.AreEqual(1, ma_liste.Count);
+
+            }
+
+
+        }
+
 
     }
 

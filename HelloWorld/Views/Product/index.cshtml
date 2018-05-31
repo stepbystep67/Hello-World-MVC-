@@ -1,8 +1,13 @@
-﻿@model IEnumerable<HelloWorld.Models.Product>
+﻿
+@model IEnumerable<HelloWorld.Models.Product>
+
 <!-- model est la liste et l'item est l'element -->
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -30,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Reference)
             </td>
             <td>
-                <img src="@item.GetThumbnailPath()" class="images_list" />
+                <img src="/@item.GetThumbnail()" class="images_list" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductDescription)
