@@ -12,6 +12,7 @@ using System.Web.Mvc; // https://msdn.microsoft.com/fr-fr/library/system.web.mvc
 namespace HelloWorld.Controllers
 {
 
+    // heritage de la classe controller 
     public class ClientController : Controller
     {
 
@@ -108,7 +109,7 @@ namespace HelloWorld.Controllers
         }
 
 
-        [HttpPost,ActionName("Delete")]// permet l'utilisation de
+        [HttpPost,ActionName("Delete")]// permet l'uti
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

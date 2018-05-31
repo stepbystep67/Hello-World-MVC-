@@ -107,9 +107,9 @@ namespace HelloWorld.Controllers
 
                         string path = Server.MapPath("/");
 
-                        string path_img = Path.Combine(path, exist.GetImage());
+                        string path_img = Path.Combine(path, exist.GetImagesPath());
 
-                        string path_th = Path.Combine(path, exist.GetThumbnail());
+                        string path_th = Path.Combine(path, exist.GetThumbnailPath());
 
                         file.SaveAs(path_img);
 

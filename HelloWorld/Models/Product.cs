@@ -14,6 +14,11 @@ namespace HelloWorld.Models
     public class Product
     {
 
+        // remplacable par le nom de la class et de type int et si les deux alors il sait pas choisir!
+        // entity framework a besoin d'un id de type int sinon sa ne fonctionne pas 
+        public int Id { get; set; }// il s'autoincremente par framework,se n'est pas la clé primaire de la table!!
+
+
         // les modelstate (attribut de methode) sert a ne pas faire des conditions if et autres !!!
         // nouvelle syntaxe pour les accesseur
 
@@ -30,8 +35,7 @@ namespace HelloWorld.Models
         }
 
         // si il y a une erreur alors se sera celui ci
-        [Required(ErrorMessage ="La réference est requise")]
-        [StringLength(8, ErrorMessage = "la reference est trop longue ")]
+        [Required(ErrorMessage ="La description est requise")]
         [Display(Name = "description de ton produit")]// change le texte qui est a la base le nom de la propriete
         public string ProductDescription
         {
@@ -52,7 +56,7 @@ namespace HelloWorld.Models
         }
 
         // si il y a une erreur alors se sera celui ci
-        [Required(ErrorMessage ="La réference est requise")]
+        [Required(ErrorMessage ="Le pris est requis")]
         [Display(Name = "prix toutes taxes comprises")]// change le texte qui est a la base le nom de la propriete
         public double ProductPrice
         {
@@ -71,7 +75,7 @@ namespace HelloWorld.Models
 
         }
 
-        // constructeur avec parametre ref equivalent id pour identifier
+        // constructeur avec parametre ref (equivalent id pour identifier)
         public Product(string _ref)
         {
 
@@ -80,24 +84,33 @@ namespace HelloWorld.Models
 
         }
 
+        // recupere l'image du produit 
+        public string GetImage()
+        {
+            // si il existe alors on lui donne son image correspondante dans la liste 
+            // verification 
+            if(File.Exists(HttpContext.Current.Server.MapPath("~/" + GetImagesPath())))
+            {
+
+                // retourne l'image correspondante
+                return GetImagesPath();
+            }
+
+            // retourne l'image par defaut 
+            return "Content/default.jpg";
+
+        }
+
+        // méthode qui retourne l'image qui correspond a la reference de produit ( sans verification ) 
         public string GetImagesPath()
         {
 
-
+            // retourne l'image correspondante 
             return "Content/product/" + Reference + ".jpg";
 
         }
 
-        public string GetImage()
-        {
-
-            // permet de trouver et afficher la bonne image du produit choisi par l'utilisateur 
-            return GetImagesPath();
-        }
-
-       
-
-        // méthode qui retourne l'image qui correspond a la reference de produit 
+         // méthode qui retourne l'image qui correspond a la reference de produit 
         // 
         public string GetThumbnail()
         {
@@ -108,12 +121,21 @@ namespace HelloWorld.Models
             if (!File.Exists(path: HttpContext.Current.Server.MapPath("~/Content/product/" + Reference + ".jpg")))
             {
                 
-                return @"Content/product/default.jpg" ;
+                return @"Content/default.jpg" ;
             }
 
-            return "Content/product/" + Reference + "_th.jpg";
+            return GetImagesPath();
         }
 
+
+        public string GetThumbnailPath()
+        {
+
+            // retourne l'image miniature et change l'extension pour ne pas confondre
+            return "Content/product/" + Reference + "_Th.jpg";
+        }
+
+       
     }
 
 }
