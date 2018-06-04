@@ -7,13 +7,12 @@ using System.Collections.Generic;
 namespace UnitTestProject1
 {
 
-    [TestClass]
+    [TestClass] // L’attribut [TestClass] désigne une classe qui contient des tests unitaires
     public class BddContext_Test
     {
-
-
+        
         // attribut de methode test !
-        [TestMethod] // Permet d'identifier des méthodes de test.  Cette classe ne peut pas être héritée.   https://msdn.microsoft.com/fr-fr/library/microsoft.visualstudio.testtools.unittesting.testmethodattribute.aspx
+        [TestMethod]// Cette classe ne peut pas être héritée. L’attribut [TestMethod] indique une méthode qui est une méthode de test.  https://msdn.microsoft.com/fr-fr/library/microsoft.visualstudio.testtools.unittesting.testmethodattribute.aspx
         public void TestMethod1()
         {
 
@@ -25,14 +24,23 @@ namespace UnitTestProject1
                 dal.AddProduct(new Product { Reference = "gp20", ProductName = "google play", ProductDescription = "application", ProductPrice = 1 });
 
                 // instanciation d'une liste de produit ou l'on y mets le resultat de la méthode qui retourne une liste
-                List<Product> products = dal.GetProduct();
+                List<Product> products = dal.GetProducts();
 
-                Assert.IsNotNull(products);// compare si il est nul 
+                Assert.IsNotNull(products);// si il est null ,donc si il y en a au moin un ...
+  
                 // assert.areequal(1,productname.count) compare les deux
                 Assert.AreEqual("gp20",products[0].Reference);
 
-                Assert.AreEqual("google play",products[0].ProductName);
+                Assert.AreEqual("google play",products[0].ProductName);//https://openclassrooms.com/courses/programmez-en-oriente-objet-avec-c/les-tests-unitaires-5
                 
+                 if (products.Count > 0)
+                 {
+                        
+                    
+                    
+                 }
+              
+             
             }
 
         }
@@ -62,18 +70,24 @@ namespace UnitTestProject1
 
         }
 
-        // tous testés
+        
         [TestMethod]
-        public void TestAll()
+        public void TestAll() // tous testés
         {
             
             using (Dal dal = new Dal())
             {
-                // testmethod = utilisé l'objet assert et ses methodes pour verfirier ou comparer les resultats attendus
 
+                // testmethod = utilisé l'objet assert et ses methodes pour verfirier ou comparer les resultats attendus
+                // on ajoute un client 
                 dal.AddClient(new Client { Prenom = "philipe", Nom = "moris" });
+
+                // recupere le client par id
                 List<Client> ma_liste = dal.GetClients();
+
+                // le client doit etre identique si on veut que ca marche
                 Assert.AreEqual(1, ma_liste.Count);
+
 
             }
 

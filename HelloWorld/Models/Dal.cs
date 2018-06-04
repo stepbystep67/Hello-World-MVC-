@@ -32,14 +32,14 @@ namespace HelloWorld.Models
         public void Dispose()
         {
 
-            db.Dispose();
+            db.Dispose();// libere des ressources
 
         }
 
         #region PRODUCTS
 
         // obtient la liste des produits
-        public List<Product> GetProduct()
+        public List<Product> GetProducts()
         {
 
             // type dbset converti
@@ -67,15 +67,15 @@ namespace HelloWorld.Models
         // obtient la liste 
         public List<Product> GetProducts(Predicate<Product> predicate)
         {
-
-
+            
             List<Product> result = new List<Product>();
                 
             // pour chaque produit qui passe dans la liste 
             foreach(Product p in db.Products)
             {
-                
-                if(predicate(p))
+                // https://msdn.microsoft.com/fr-fr/library/bfed8bca(v=vs.110).aspx
+                // Détermine si List<T> contient des éléments qui correspondent aux conditions définies par le prédicat spécifié.
+                if (predicate(p))
                 {
 
                     result.Add(p);
@@ -141,8 +141,7 @@ namespace HelloWorld.Models
         // obtient le client par identifiant unique 
         public Client GetClient(int id)
         {
-
-
+            
             return db.Clients.FirstOrDefault(x => (x.Id == id));
         }
 
@@ -161,6 +160,7 @@ namespace HelloWorld.Models
 
             Client exist = db.Clients.FirstOrDefault(x => (x.Id == id));
 
+            // si il existe alors 
             if(exist != default(Client))
             {
 
@@ -181,6 +181,7 @@ namespace HelloWorld.Models
             // si les données client sont differentes de celui par defaut alors 
             if(exist != default(Client))
             {
+
                 // remplacement des données
                 exist.Nom = c.Nom;
                 exist.Prenom = c.Prenom;
@@ -194,15 +195,15 @@ namespace HelloWorld.Models
         // obtient la liste 
         public List<Client> GetClients(Predicate<Client> predicate)
         {
-
+            // creation de la liste qui contiendra les clients a afficher 
             List<Client> result = new List<Client>();
 
             // pour chaque client dans la liste 
             foreach(Client c in db.Clients)
             {
-
-                // test du predicate sur le client si true
-                if(predicate(c))
+                //  https://msdn.microsoft.com/fr-fr/library/bfed8bca(v=vs.110).aspx
+                // Détermine si List<T> contient des éléments qui correspondent aux conditions définies par le prédicat spécifié.
+                if (predicate(c))
                 {
 
                     // alors on l'ajoute au resultat
