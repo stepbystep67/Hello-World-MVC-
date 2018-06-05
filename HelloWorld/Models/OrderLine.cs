@@ -6,7 +6,7 @@ using System.Web;
 namespace HelloWorld.Models
 {
 
-    public class OrderLine
+    public class product
     {
 
         private int id;
@@ -84,7 +84,7 @@ namespace HelloWorld.Models
             }
         }
 
-        public OrderLine()
+        public product()
         {
 
 

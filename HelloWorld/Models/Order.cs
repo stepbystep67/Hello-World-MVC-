@@ -2,147 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HelloWorld.Models;
+using HelloWorld.Controllers;
+
 
 namespace HelloWorld.Models
 {
 
     public class Order
     {
-
-        private int id; // identifiant unique pour chaque personne
-
-        private int amount; // montant sans taxe 
-       
-        private int total_tax;//montant avec taxe 
         
-        private Client client; // client temporaire 
+        // accesseur automatic depuis le visual studio 2017
+        public int Id { get; set; }
+        
+        public int IdClient { get; set; }
 
-        private List<Product> list; // liste temporaire 
+        public DateTime OrderDate { get; set; }
 
-        private int idClient;
+        public double OrderAmount { get; set; }
 
-        private DateTime orderTime;
+        public bool OrderPaid { get; set; }
+        
+        // liste pour gerer plusieur commande 
+        public List<product> Items { get; protected set; }// liste temporaire 
 
-        private double orderAmount;
+        Dal dal;
 
-        private bool orderPaid; 
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-
-            set
-            {
-                amount = value;
-            }
-        }
-
-        public int Total_tax
-        {
-            get
-            {
-                return total_tax;
-            }
-
-            set
-            {
-                total_tax = value;
-            }
-        }
-
-        public Client Client
-        {
-            get
-            {
-                return client;
-            }
-
-            set
-            {
-                client = value;
-            }
-        }
-
-        public List<Product> List
-        {
-            get
-            {
-                return list;
-            }
-
-            set
-            {
-                list = value;
-            }
-        }
-
-        public int IdClient
-        {
-            get
-            {
-                return idClient;
-            }
-
-            set
-            {
-                idClient = value;
-            }
-        }
-
-        public DateTime OrderTime
-        {
-            get
-            {
-                return orderTime;
-            }
-
-            set
-            {
-                orderTime = value;
-            }
-        }
-
-        public double OrderAmount
-        {
-            get
-            {
-                return orderAmount;
-            }
-
-            set
-            {
-                orderAmount = value;
-            }
-        }
-
-        public bool OrderPaid
-        {
-            get
-            {
-                return orderPaid;
-            }
-
-            set
-            {
-                orderPaid = value;
-            }
-        }
+        OrderLine order_line;
 
         public Order()
         {
@@ -151,5 +37,16 @@ namespace HelloWorld.Models
 
         }
 
+        public Order(int id,int idclient,DateTime orderdate,double ordermount,bool orderpaid)
+        {
+
+            this.Id = id;
+            this.OrderDate = orderdate;
+            this.OrderAmount = ordermount;
+            this.OrderPaid = orderpaid;
+
+        }
+
     }
+
 }
