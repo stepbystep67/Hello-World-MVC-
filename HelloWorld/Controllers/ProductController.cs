@@ -14,6 +14,17 @@ namespace HelloWorld.Controllers
     public class ProductController : Controller
     {
         // 
+        Dal dal;
+
+        public ProductController()
+        {
+            // permet de remplacer les elements static par le dynamique (base de donnée = dal)
+            dal = new Dal();
+
+        }
+
+
+        // 
         static public List<Product> List_Product = new List<Product>
         {
 
@@ -24,15 +35,17 @@ namespace HelloWorld.Controllers
             new Product("a004"){ ProductName="systeme d'exploitation",ProductPrice=654,ProductDescription="unix "},
             new Product("a005"){ ProductName="cloud",ProductPrice=789,ProductDescription="deux elements seulement"},
             new Product("a006"){ ProductName="quelque chose",ProductPrice=987,ProductDescription="truc"}
-
+             
         };
 
 
         // GET: Product
         public ActionResult Index()
         {
-            // affiche la liste par defaut
-            return View(List_Product);
+
+            // affiche la liste de la base de donnée 
+            // en static fallait mettre le nom de la liste a afficher
+            return View(dal.GetProducts());
 
         }
 
@@ -50,7 +63,7 @@ namespace HelloWorld.Controllers
             {
 
                 // affiche les info du produit
-                return View(p);
+                return View(dal.GetProduct(p.Reference));                                                                                                  // dal.GetProduct();
 
             }
 
@@ -63,14 +76,21 @@ namespace HelloWorld.Controllers
         public ActionResult Edit(string id)// reagi avec get mais pas post
         {
 
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+            // Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+
+            Product exist = dal.GetProduct(id);
 
             if (exist != default(Product))
             {
-                // affiche le produit 
-                return View(exist);
+
+                // sauf pour modifier creer et supprimer sinon dabord faire la modif puis renvoyer le produit
+                dal.UpDateProduct(exist);
+
+                // renvoie le produit 
+                return View(exist);                                                                                            // dal.UpDateProduct(id)
 
             }
+
             // reaffiche la liste dorigine
             return RedirectToAction("index");
 
@@ -81,7 +101,8 @@ namespace HelloWorld.Controllers
         public ActionResult Edit(Product p)
         {
 
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == p.Reference);
+            // Product exist = List_Product.FirstOrDefault(x => x.Reference == p.Reference);
+            Product exist = dal.GetProduct(p.Reference);
 
             if (exist != default(Product))
             {
@@ -89,7 +110,8 @@ namespace HelloWorld.Controllers
                 exist.ProductName = p.ProductName;
                 exist.ProductPrice = p.ProductPrice;
                 exist.ProductDescription = p.ProductDescription;
-
+                dal.UpDateProduct(exist);
+                
                 // request se rempli automatiquement par les methodes post ou get
                 // verifier si il y en a au moin un 
                 if(Request.Files.Count > 0)
@@ -155,11 +177,13 @@ namespace HelloWorld.Controllers
             {
 
 
-                return View("Create", p);
+                return View("Create", p);                                                                     // dal.AddProduct(p)
             }
 
-            List_Product.Add(p);
+            //   List_Product.Add(p);
 
+            dal.AddProduct(p);
+            
             // rediriger vers une autre page pour ne pas que l'utilisateur puisse actualiser
             return RedirectToAction("index");
 
@@ -169,12 +193,15 @@ namespace HelloWorld.Controllers
         public ActionResult Delete(string id)
         {
 
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+
+            // Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+
+            Product exist = dal.GetProduct(id);
 
             if (exist != default(Product))
             {
 
-                return View(exist);
+                return View(exist);                                                                           // dal.DeleteProduct(int id)
 
             }
 
@@ -186,19 +213,16 @@ namespace HelloWorld.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
 
-            Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+            //  Product exist = List_Product.FirstOrDefault(x => x.Reference == id);
+
+            Product exist = dal.GetProduct(id);
 
             if (exist != default(Product))
             {
 
-                if (List_Product.Remove(exist))
-                {
-
-
-
-                }
-                return View(exist);
-
+                //  if (List_Product.Remove(exist))
+                dal.DeleteProduct(exist.Id);
+                
             }
             return RedirectToAction("index");
 

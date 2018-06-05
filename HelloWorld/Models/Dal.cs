@@ -9,6 +9,9 @@ using System.Web;
 namespace HelloWorld.Models
 {
 
+    // pour les methodes creation modifier et supprimer il faut ajouter un db.savechanges() pour enregistrer dans la base de donnée 
+
+
     // Une classe de base qui implémente IDisposable. 
     // En implémentant IDisposable, vous annoncez que 
     // les instances de ce type allouent des ressources rares.
@@ -52,7 +55,7 @@ namespace HelloWorld.Models
         {
 
             db.Products.Add(p); // derriere il fait des vrai requete sql donc on peut pas envoyer n'importe quoi 
-            db.SaveChanges(); 
+            db.SaveChanges(); // envoie la requete au serveur et enregistre les changements 
             
         }
 
@@ -62,6 +65,14 @@ namespace HelloWorld.Models
 
             // retourne le produit correspondant 
             return db.Products.FirstOrDefault(x => (x.Id == id)); 
+
+        }
+
+        // obtient un produit par une reference unique
+        public Product GetProduct(string reference)
+        {
+            
+            return db.Products.FirstOrDefault(x => (x.Reference == reference));
         }
 
         // obtient la liste 
@@ -102,13 +113,14 @@ namespace HelloWorld.Models
                 exist.ProductName = p.ProductName;
                 exist.ProductDescription = p.ProductDescription;
                 exist.ProductPrice = p.ProductPrice;
+                db.SaveChanges();
                
             }
 
             
         }
 
-        // supprime un produit 
+        // supprime un produit precis 
         public void DeleteProduct(int id)
         {
 
@@ -117,8 +129,10 @@ namespace HelloWorld.Models
             
             if(exist != default(Product))
             {
+
                 // acces a la base de donnée + model + methode(objet a supprimer)
                 db.Products.Remove(exist);
+                db.SaveChanges();
 
             }
 

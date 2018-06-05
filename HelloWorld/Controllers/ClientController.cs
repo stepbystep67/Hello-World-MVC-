@@ -16,6 +16,15 @@ namespace HelloWorld.Controllers
     public class ClientController : Controller
     {
 
+        Dal dal;
+
+        public ClientController()
+        {
+
+            dal = new Dal();
+
+        }
+
         // en static pour chaque instance meme liste !!! et non static une nouvelle liste se creer
         // création de la liste de client 
        static public List<Client> liste = new List<Client>()
@@ -37,14 +46,14 @@ namespace HelloWorld.Controllers
         public ActionResult Index()
         {
             // redirection vers la prochaine méthode
-            return RedirectToAction("Liste");
+            return RedirectToAction("Liste");                    // View(dal.GetClients())
         }
 
         // correspond au clique sur le lien liste des client 
         public ActionResult Liste()
         {
-
-            return View(liste);// retourne donc affiche la liste
+            // retourne donc affiche la liste
+            return View(liste);                                   // View(dal.GetClients)
 
         }
 
@@ -53,7 +62,7 @@ namespace HelloWorld.Controllers
         public ActionResult Create()
         {
 
-            return View();
+            return View();                                   // View(dal.AddClient())
 
         }
 
@@ -81,7 +90,7 @@ namespace HelloWorld.Controllers
             {
 
                 // alors on re
-                return View("Create", c);
+                return View("Create", c);                              // View(dal.AddClient());
             }
 
             // ajout de l'utilisateur 
@@ -101,7 +110,7 @@ namespace HelloWorld.Controllers
             if(c != default(Client))
             {
 
-                return View(c);
+                return View(c);                                           // View(dal.Delete());
 
             }
 
@@ -127,7 +136,7 @@ namespace HelloWorld.Controllers
 
                 }
 
-                return View();
+                return View();                                           // View(dal.Delete());
 
             }
 
@@ -205,7 +214,7 @@ namespace HelloWorld.Controllers
 
             Client c = liste.FirstOrDefault(x => (x.Id == id));
 
-            return View(c);
+            return View(c);                                                              // view(dal.GetClient)
 
         }
 

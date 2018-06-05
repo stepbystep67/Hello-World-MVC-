@@ -55,28 +55,36 @@ namespace HelloWorld.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+
             try
             {
+
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");
+
             }
             catch
             {
+
                 return View();
+
             }
         }
 
         // GET: Order/Delete/5
         public ActionResult Delete(int id)
         {
+
             return View();
+
         }
 
         // POST: Order/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+
             try
             {
                 // TODO: Add delete logic here
@@ -85,7 +93,9 @@ namespace HelloWorld.Controllers
             }
             catch
             {
+
                 return View();
+
             }
         }
     }
