@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using HelloWorld.Models;
 using HelloWorld.Controllers;
-
+using System.Data.Entity;
 
 namespace HelloWorld.Models
 {
@@ -24,27 +24,22 @@ namespace HelloWorld.Models
         public bool OrderPaid { get; set; }
         
         // liste pour gerer plusieur commande 
-        public List<product> Items { get; protected set; }// liste temporaire 
+        // composition avec la class orderline !!!!!
+        public List<OrderLine> Items { get; protected set; }  // liste temporaire 
 
-        Dal dal;
-
-        OrderLine order_line;
-
+        private Dal dal;
+        
         public Order()
         {
 
-
+            dal = new Dal();
 
         }
 
-        public Order(int id,int idclient,DateTime orderdate,double ordermount,bool orderpaid)
+        public Order(int Quantity,double Price)
         {
-
-            this.Id = id;
-            this.OrderDate = orderdate;
-            this.OrderAmount = ordermount;
-            this.OrderPaid = orderpaid;
-
+            
+            return;
         }
 
     }
