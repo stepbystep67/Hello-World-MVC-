@@ -27,21 +27,8 @@ namespace HelloWorld.Models
         // composition avec la class orderline !!!!!
         public List<OrderLine> Items { get; protected set; }  // liste temporaire 
 
-        private Dal dal;
         
-        public Order()
-        {
-
-            dal = new Dal();
-
-        }
-
-        public Order(int Quantity,double Price)
-        {
-            
-            return;
-        }
-
+        
     }
 
 }

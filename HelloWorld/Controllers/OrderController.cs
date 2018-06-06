@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace HelloWorld.Controllers
 {
+
     public class OrderController : Controller
     {
 
@@ -14,7 +16,7 @@ namespace HelloWorld.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         // GET: Order/Details/5
