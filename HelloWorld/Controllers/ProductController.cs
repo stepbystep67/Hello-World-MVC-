@@ -162,7 +162,7 @@ namespace HelloWorld.Controllers
 
         }
 
-
+        // pour l'affichage
         public ActionResult Create()
         {
 
@@ -170,6 +170,7 @@ namespace HelloWorld.Controllers
             return View();
         }
 
+        // 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(Product p)
         {

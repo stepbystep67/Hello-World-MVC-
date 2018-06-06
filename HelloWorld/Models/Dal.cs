@@ -50,15 +50,6 @@ namespace HelloWorld.Models
 
         }
 
-        // ajoute un produit
-        public void AddProduct(Product p)
-        {
-
-            db.Products.Add(p); // derriere il fait des vrai requete sql donc on peut pas envoyer n'importe quoi 
-            db.SaveChanges(); // envoie la requete au serveur et enregistre les changements 
-            
-        }
-
         // obtient un produit avec identifiant unique
         public Product GetProduct(int id)
         {
@@ -75,7 +66,7 @@ namespace HelloWorld.Models
             return db.Products.FirstOrDefault(x => (x.Reference == reference));
         }
 
-        // obtient la liste 
+// obtient la liste 
         public List<Product> GetProducts(Predicate<Product> predicate)
         {
             
@@ -98,6 +89,16 @@ namespace HelloWorld.Models
             return result ;
         }
 
+        // ajoute un produit
+        public void AddProduct(Product p)
+        {
+
+            db.Products.Add(p); // derriere il fait des vrai requete sql donc on peut pas envoyer n'importe quoi 
+            db.SaveChanges(); // envoie la requete au serveur et enregistre les changements 
+            
+        }
+        
+        
         // mise a jour du produit selectionner 
         public void UpDateProduct(Product p)
         {
