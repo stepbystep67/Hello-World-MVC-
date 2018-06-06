@@ -8,6 +8,7 @@ using System.Data.Entity;// permet la creation de persistance de données
 
 namespace HelloWorld.Models
 {
+
     // bddcontext herite de DbContext ! permet dacceder sans requete sql
     public class BddContext : DbContext// ajouter a partir du double point 
     {
@@ -15,6 +16,10 @@ namespace HelloWorld.Models
         public DbSet<Client> Clients { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderLine> OrderLines { get; set; }
         
         // 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

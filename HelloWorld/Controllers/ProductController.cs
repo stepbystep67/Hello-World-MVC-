@@ -10,9 +10,11 @@ using System.Web.Helpers;// pour utiliser webimage
 
 namespace HelloWorld.Controllers
 {
+    
 
     public class ProductController : Controller
     {
+
         // 
         Dal dal;
 
