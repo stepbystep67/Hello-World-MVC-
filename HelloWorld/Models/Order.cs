@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using HelloWorld.Models;
-using HelloWorld.Controllers;
-using System.Data.Entity;
 
 namespace HelloWorld.Models
 {
-
+    
     public class Order
     {
         
@@ -22,13 +17,13 @@ namespace HelloWorld.Models
         public double OrderAmount { get; set; }
 
         public bool OrderPaid { get; set; }
-        
+
         // liste pour gerer plusieur commande 
         // composition avec la class orderline !!!!!
-        public List<OrderLine> Items { get; protected set; }  // liste temporaire 
+        protected List<OrderLine> Items;  // liste temporaire 
 
-        
-        
+        List<Order> List_Order { get; set; }
+
     }
 
 }

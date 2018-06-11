@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.IO;
-using System.Web.Helpers;
-using HelloWorld.Models;
-using System.Web.Mvc;
-
-
 
 namespace HelloWorld.Models
 {
@@ -54,15 +47,8 @@ namespace HelloWorld.Models
 
         }
 
-        // affiche les commandes
-        public void AddOrder()
-        {
 
-
-
-        }
-
-        // ajoute un produit 
+        // ajoute une commande 
         public void AddOrder(Order o)
         {
 
@@ -71,11 +57,6 @@ namespace HelloWorld.Models
 
         }
 
-        public void Delete()
-        {
-
-            
-        }
 
         // supprime la commande selectionner 
         public void DeleteOrder(int id)

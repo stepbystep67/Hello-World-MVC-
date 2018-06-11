@@ -227,6 +227,7 @@ namespace HelloWorld.Controllers
                 dal.DeleteProduct(exist.Id);
                 
             }
+
             return RedirectToAction("index");
 
         }

@@ -1,4 +1,4 @@
-﻿using HelloWorld.Models; // 
+﻿using HelloWorld.Models; // acces au contenu du dossier model
 using System;
 using System.Collections.Generic;
 using System.Linq;
